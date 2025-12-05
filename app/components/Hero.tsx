@@ -4,7 +4,7 @@ import React from "react";
 
 function Hero() {
   return (
-    <div className="bg-emerald-500 p-10 flex items-stretch">
+    <div className="bg-emerald-500 flex items-stretch pt-24 p-10">
       {/* Left side text section  */}
       <div className="text-white flex flex-col gap-y-12 md:w-1/2">
         <h1 className="font-semibold text-md lg:text-lg flex items-center gap-x-2">

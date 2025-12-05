@@ -10,7 +10,7 @@ import React from "react";
 
 function Services() {
   return (
-    <div className=" ">
+    <div className="">
       <div className="flex items-center justify-center pt-4 gap-2 text-xs sm:text-lg font-semibold">
         <Activity />
         Medical Services
