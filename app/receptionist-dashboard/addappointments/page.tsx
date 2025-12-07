@@ -1,7 +1,9 @@
 export default function Page() {
   return (
     <>
-      <div>Add Appointments Page</div>
+      <div className="h-[2000px] md:ml-28 border-2 border-emerald-300 w-full ">
+        Add Appointments Page
+      </div>
     </>
   );
 }

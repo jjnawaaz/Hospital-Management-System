@@ -15,8 +15,10 @@ function Sidebar({ data, setSideBarOpen, sideBarOpen }: SidebarProps) {
     url = "/doctor-dashboard";
   } else if (data[0].type === "Receptionist") {
     url = "/receptionist-dashboard";
-  } else {
+  } else if (data[0].type === "Pharmacist") {
     url = "/pharmacist-dashboard";
+  } else {
+    url = "/admin";
   }
   return (
     <div

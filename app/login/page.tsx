@@ -37,6 +37,29 @@ function page() {
               </button>
             </Link>
           </div>
+          {/* During dev only  */}
+          <div className="flex flex-col gap-y-3">
+            <Link href={"doctor-dashboard"}>
+              <button className="bg-white text-emerald-700 rounded-lg text-sm p-1">
+                Doctor
+              </button>
+            </Link>
+            <Link href={"pharmacist-dashboard"}>
+              <button className="bg-white text-emerald-700 rounded-lg text-sm p-1">
+                Pharmacist
+              </button>
+            </Link>
+            <Link href={"receptionist-dashboard"}>
+              <button className="bg-white text-emerald-700 rounded-lg text-sm p-1">
+                Receptionist
+              </button>
+            </Link>
+            <Link href={"admin"}>
+              <button className="bg-white text-emerald-700 rounded-lg text-sm p-1">
+                Admin
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

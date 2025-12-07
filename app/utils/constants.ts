@@ -71,3 +71,22 @@ export const pharmacistFields: SideBarFields[] = [{
     name:'Invoice',
     type:'Pharmacist'
 }]
+
+
+export const adminFields: SideBarFields[] = [{
+    logo:'logo',
+    name:'Doctor',
+    type:'Admin'
+},{
+    logo:'logo',
+    name:'Pharmacist',
+    type:'Admin'
+},{
+    logo:'logo',
+    name:'Receptionist',
+    type:'Pharmacist'
+},{
+    logo:'logo',
+    name:'Admins',
+    type:'Admin'
+}]
