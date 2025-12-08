@@ -39,6 +39,7 @@ function Sidebar({ data, setSideBarOpen, sideBarOpen }: SidebarProps) {
                   ? url
                   : `${`${url}/${item.name.toLowerCase()}`}`
               }`}
+              onClick={() => setSideBarOpen((prev) => !prev)}
             >
               <span className="mt-2 hidden">{item.logo}</span>
               <span className="mt-2 text-[10px] font-semibold">

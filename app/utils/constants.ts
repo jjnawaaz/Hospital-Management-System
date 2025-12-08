@@ -5,8 +5,6 @@ export type SideBarFields = {
 }
 
 
-
-
 export const doctorFields: SideBarFields[] = [{
     logo: 'logo',
     name:'Profile',
@@ -21,10 +19,6 @@ export const doctorFields: SideBarFields[] = [{
     type: 'Doctor'
 },
 {
-    logo: 'logo',
-    name:'Prescriptions',
-    type: 'Doctor'
-},{
     logo:'logo',
     name:"AddPrescription",
     type: 'Doctor'
@@ -64,16 +58,16 @@ export const pharmacistFields: SideBarFields[] = [{
     type:'Pharmacist'
 },{
     logo:'logo',
-    name:'Prescriptions',
-    type:'Pharmacist'
-},{
-    logo:'logo',
     name:'Invoice',
     type:'Pharmacist'
 }]
 
 
 export const adminFields: SideBarFields[] = [{
+    logo:'logo',
+    name:'Profile',
+    type:'Admin'
+},{
     logo:'logo',
     name:'Doctor',
     type:'Admin'
