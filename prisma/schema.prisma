@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Doctor {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  email          String   @unique
+  name           String
+  password       String
+  specialization String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  reports        Report[]
+}
+
+model Receptionist {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  reports   Report[]
+}
+
+model Pharmacist {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  email     String    @unique
+  name      String
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  invoices  Invoice[]
+}
+
+model Patient {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  phonenumber String   @unique
+  name        String
+  age         String
+  location    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  reports     Report[]
+}
+
+model Report {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  doctorId String @db.ObjectId
+  doctor   Doctor @relation(fields: [doctorId], references: [id])
+
+  receptionistId String       @db.ObjectId
+  receptionist   Receptionist @relation(fields: [receptionistId], references: [id])
+
+  patientId String  @db.ObjectId
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  appointmentTime DateTime
+
+  prescription String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  invoices  Invoice[]
+}
+
+model Invoice {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  reportId String @db.ObjectId
+  report   Report @relation(fields: [reportId], references: [id])
+
+  pharmacistId String     @db.ObjectId
+  pharmacist   Pharmacist @relation(fields: [pharmacistId], references: [id])
+
+  tablets String[]
+
+  total Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
