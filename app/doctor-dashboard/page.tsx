@@ -1,9 +1,9 @@
-function Page() {
+import ProfilePage from "../components/Profile";
+
+export default function Page() {
   return (
-    <div className="h-[2000px] md:ml-28 border-2 border-emerald-300">
-      Doctor Dashboard Page
-    </div>
+    <>
+      <ProfilePage />
+    </>
   );
 }
-
-export default Page;
