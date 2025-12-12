@@ -94,7 +94,7 @@ model Invoice {
   pharmacistId String     @db.ObjectId
   pharmacist   Pharmacist @relation(fields: [pharmacistId], references: [id])
 
-  tablets String[]
+  tablets Json
 
   total Float
 

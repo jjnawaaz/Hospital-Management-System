@@ -1,8 +1,15 @@
 import { prisma } from "@/app/lib/prisma"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import bcrypt from 'bcrypt'
+import { adminMiddleware } from "@/app/utils/adminMiddleware"
 // Get Receptionists by admin
-export async function GET(){
+export async function GET(request: NextRequest){
+    // check if the user is admin here 
+        const isChecked = await adminMiddleware(request)
+        if(!isChecked) return NextResponse.json({
+            message:'Unauthorized user',
+            success: true
+        })
     try{
     const data = await prisma.receptionist.findMany()
     if(!data) return NextResponse.json({
@@ -26,7 +33,13 @@ export async function GET(){
 
 
 // create receptionist by admin
-export async function POST(request: Request){
+export async function POST(request: NextRequest){
+    // check if the user is admin here 
+    const isChecked = await adminMiddleware(request)
+    if(!isChecked) return NextResponse.json({
+        message:'Unauthorized user',
+        success: true
+    })
     const {email, password, name} = await request.json()
     if(!email || !password || !name) return NextResponse.json({
         message:"Enter email, password and name",

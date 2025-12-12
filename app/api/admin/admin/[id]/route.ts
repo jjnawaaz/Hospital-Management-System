@@ -1,10 +1,17 @@
 import { prisma } from "@/app/lib/prisma"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import bcrypt from 'bcrypt'
+import { adminMiddleware } from "@/app/utils/adminMiddleware"
 
 
 // Get admin by ID --admin
-export async function GET(request: Request,{params}:{params: {id: string}}){
+export async function GET(request: NextRequest,{params}:{params: {id: string}}){
+    // check if the user is admin here 
+        const isChecked = await adminMiddleware(request)
+        if(!isChecked) return NextResponse.json({
+            message:'Unauthorized user',
+            success: true
+        })
     const {id} = await params
     if(id){
         try{
@@ -33,7 +40,13 @@ export async function GET(request: Request,{params}:{params: {id: string}}){
 }
 
 // Update admin by ID -- admin
-export async function PUT(request: Request,{params}:{params: {id: string}}){
+export async function PUT(request: NextRequest,{params}:{params: {id: string}}){
+    // check if the user is admin here 
+    const isChecked = await adminMiddleware(request)
+    if(!isChecked) return NextResponse.json({
+        message:'Unauthorized user',
+        success: true
+    })
     const {email, password, name } = await request.json()
     const {id} = await params
     if(!id) return NextResponse.json({
@@ -86,7 +99,13 @@ export async function PUT(request: Request,{params}:{params: {id: string}}){
 }
 
 // Delete admin by ID -- admin
-export async function DELETE(request: Request,{params}:{params: {id: string}}){
+export async function DELETE(request: NextRequest,{params}:{params: {id: string}}){
+    // check if the user is admin here 
+    const isChecked = await adminMiddleware(request)
+    if(!isChecked) return NextResponse.json({
+        message:'Unauthorized user',
+        success: true
+    })
     const {id} = await params
     if(!id) return NextResponse.json({
         message:"Enter AdminId to delete",
