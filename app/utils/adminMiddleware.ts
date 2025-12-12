@@ -10,6 +10,7 @@ export async function adminMiddleware(request: NextRequest){
     const cookie = request.cookies.get(process.env.COOKIE_NAME as string)
     if(!cookie) return false
     const decoded = await jwt.verify(cookie.value ,process.env.JWT_SECRET as string) as JwtPayload
+    if(!decoded) return false
     const admin = await prisma.admin.findFirst({
         where: {
             id: decoded.id
@@ -18,5 +19,5 @@ export async function adminMiddleware(request: NextRequest){
     if(!admin){
         return false
     }
-    return true
+    return admin
 }

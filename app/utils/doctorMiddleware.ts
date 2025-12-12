@@ -10,6 +10,7 @@ export async function doctorMiddleware(request: NextRequest){
     const cookie = request.cookies.get(process.env.COOKIE_NAME as string)
     if(!cookie) return false
     const decoded = await jwt.verify(cookie.value ,process.env.JWT_SECRET as string) as JwtPayload
+    if(!decoded) return false
     const doctor = await prisma.doctor.findFirst({
         where: {
             id: decoded.id
